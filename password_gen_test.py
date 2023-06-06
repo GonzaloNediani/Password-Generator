@@ -1,3 +1,4 @@
+import string
 import unittest
 import re
 from password_gen import generate_password
@@ -25,7 +26,8 @@ class FullTestDrive(unittest.TestCase):
 
     def test_contains_special(self):
         password = generate_password(9)
-        actual = self.contains_special(password)
+        print("password is: ", password)
+        actual = self.has_special_characters(password)
         self.assertTrue(actual)
 
     def test_length_constraint(self):
@@ -34,26 +36,25 @@ class FullTestDrive(unittest.TestCase):
 
     def test_unique_characters(self):
         password = generate_password(9)
-        actual = self.contains_special(password)
+        actual = self.has_unique_characters(password)
         self.assertTrue(actual)
-
+    
     ''' Helper functions next '''
+    
+    def contains_number(self, password):
+        return any(char.isdigit() for char in password)
 
-    def contains_number(self, string):
-        return any(char.isdigit() for char in string)
-
-    def contains_lower(self, string):
-        return any(char.islower() for char in string)
+    def contains_lower(self, password):
+        return any(char.islower() for char in password)
     
-    def contains_upper(self, string):
-        return any(char.isupper() for char in string)
+    def contains_upper(self, password):
+        return any(char.isupper() for char in password)
     
-    def contains_special(self, string):
-        pattern = r"[!@#$%^&*(),.?\":{}|<>]"
-        return bool(re.search(pattern, string))
+    def has_special_characters(self, password):
+        return any(char in string.punctuation for char in password)
     
-    def has_unique_characters(self, string):
-        return len(set(string)) == len(string)
+    def has_unique_characters(self, password):
+        return len(set(password)) == len(password)
 
 if __name__ == '__main__':
     unittest.main()
