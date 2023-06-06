@@ -1,31 +1,35 @@
 import string
 import unittest
-import re
 from password_gen import generate_password
 
 class FullTestDrive(unittest.TestCase):
     
     def test_length(self):
-        password = generate_password(9)
-        self.assertEqual(len(password), 9)
+        password = generate_password(12)
+        print("password is: ", password)
+        self.assertEqual(len(password), 12)
 
     def test_contains_uppercase(self):
-        password = generate_password(9)
+        password = generate_password(12)
+        print("password is: ", password)
         actual = self.contains_upper(password)
         self.assertTrue(actual)
 
     def test_contains_lowercase(self):
-        password = generate_password(9)
+        password = generate_password(12)
+        print("password is: ", password)
         actual = self.contains_lower(password)
         self.assertTrue(actual)
 
     def test_contains_number(self):
-        password = generate_password(9)
+        password = generate_password(12)
+        print("password is: ", password)
         actual = self.contains_number(password)
         self.assertTrue(actual)
 
     def test_contains_special(self):
-        password = generate_password(9)
+        password = generate_password(12)
+        print("password is: ", password)
         print("password is: ", password)
         actual = self.has_special_characters(password)
         self.assertTrue(actual)
@@ -35,7 +39,8 @@ class FullTestDrive(unittest.TestCase):
             password = generate_password(1)
 
     def test_unique_characters(self):
-        password = generate_password(9)
+        password = generate_password(12)
+        print("password is: ", password)
         actual = self.has_unique_characters(password)
         self.assertTrue(actual)
     

@@ -24,16 +24,16 @@ def generate_password(length):
     return password
 
 def generate_letters():
-    letters = ''.join(random.choice(string.ascii_letters) for _ in range(3))
-    letters = letters[0].upper() + letters[1].lower() + letters[2]
+    letters = ''.join(random.choice(string.ascii_letters) for _ in range(4))
+    letters = letters[0].upper() + letters[1].lower() + letters[2:4]
     return letters
 
 def generate_numbers():
-    numbers = ''.join(random.choice(string.digits) for _ in range(3))
+    numbers = ''.join(random.choice(string.digits) for _ in range(4))
     return numbers
 
 def generate_special():
-    return ''.join(random.choice(string.punctuation) for _ in range(3))
+    return ''.join(random.choice(string.punctuation) for _ in range(4))
 
 def has_unique_characters(password):
     return len(set(password)) == len(password)
