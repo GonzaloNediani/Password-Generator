@@ -4,43 +4,48 @@ from password_gen import generate_password
 
 class FullTestDrive(unittest.TestCase):
     
-    def test_length(self):
-        password = generate_password(12)
-        print("password is: ", password)
-        self.assertEqual(len(password), 12)
+    def test_length_complexity1(self):
+        complexity = 1
+        password = generate_password(complexity)
+        self.assertEqual(len(password), 9)
+
+    def test_length_complexity2(self):
+        complexity = 2
+        password = generate_password(complexity)
+        self.assertEqual(len(password), 18)
+
+    def test_length_complexity3(self):
+        complexity = 3
+        password = generate_password(complexity)
+        self.assertEqual(len(password), 27)
+
+    def test_length_complexity_incorrect(self):
+        complexity = 0
+        with self.assertRaises(ValueError):
+            password = generate_password(complexity)
 
     def test_contains_uppercase(self):
-        password = generate_password(12)
-        print("password is: ", password)
+        password = generate_password(1)
         actual = self.contains_upper(password)
         self.assertTrue(actual)
 
     def test_contains_lowercase(self):
-        password = generate_password(12)
-        print("password is: ", password)
+        password = generate_password(1)
         actual = self.contains_lower(password)
         self.assertTrue(actual)
 
     def test_contains_number(self):
-        password = generate_password(12)
-        print("password is: ", password)
+        password = generate_password(1)
         actual = self.contains_number(password)
         self.assertTrue(actual)
 
     def test_contains_special(self):
-        password = generate_password(12)
-        print("password is: ", password)
-        print("password is: ", password)
+        password = generate_password(1)
         actual = self.has_special_characters(password)
         self.assertTrue(actual)
 
-    def test_length_constraint(self):
-        with self.assertRaises(ValueError):
-            password = generate_password(1)
-
     def test_unique_characters(self):
-        password = generate_password(12)
-        print("password is: ", password)
+        password = generate_password(1)
         actual = self.has_unique_characters(password)
         self.assertTrue(actual)
     
